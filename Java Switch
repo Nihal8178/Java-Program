@@ -1,0 +1,58 @@
+Q3. Month Days Finder
+Write a program that takes a month (1 to 12) as input and prints the number of days in that month
+using a switch statement. Take leap years into account for February.
+
+
+import java.util.Scanner;
+
+class MonthDaysFinder {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter Month (1-12): ");
+        int month = input.nextInt();
+        int year;
+
+        if (month == 2) {
+            System.out.println("Enter Year: ");
+            year = input.nextInt();
+        } else {
+            year = 0; // Dummy value for non-February months
+        }
+
+        int days;
+        switch (month) {
+            case 1: // January
+            case 3: // March
+            case 5: // May
+            case 7: // July
+            case 8: // August
+            case 10: // October
+            case 12: // December
+                days = 31;
+                break;
+
+            case 4: // April
+            case 6: // June
+            case 9: // September
+            case 11: // November
+                days = 30;
+                break;
+
+            case 2: // February
+                // Check for leap year
+                if (year % 4 == 0 ) {
+                    days = 29; // Leap year
+                } else {
+                    days = 28; // Non-leap year
+                }
+                break;
+            default: // Invalid month
+                System.out.println("Invalid month! Please enter a number between 1 and 12.");
+                return; // Exit the program
+        }
+
+        System.out.println("Number of days in month " + month + ": " + days);
+    }
+}
